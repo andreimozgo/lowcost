@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 import org.w3c.dom.Entity;
 
@@ -19,9 +20,8 @@ public class UsersDAO extends AbstractDAO<User> {
 		super(connection);
 	}
 
-	@Override
-	public void findAll() {
 
+<<<<<<< HEAD
 		Statement statement;
 		try {
 			statement = connection.createStatement();
@@ -38,6 +38,9 @@ public class UsersDAO extends AbstractDAO<User> {
 	}
 
 	public String getPassword(String login) {
+=======
+	public String getPassword (String login){
+>>>>>>> branch 'master' of https://github.com/andreimozgo/lowcost.git
 		Statement statement;
 		String pass = null;
 		try {
@@ -71,6 +74,7 @@ public class UsersDAO extends AbstractDAO<User> {
 		return role;
 	}
 
+<<<<<<< HEAD
 	public boolean create(User entity) {
 
 		String query = "INSERT INTO users (user_id, login, pass, role) " + "VALUES (?, ?, ?, ?)";
@@ -88,5 +92,11 @@ public class UsersDAO extends AbstractDAO<User> {
 			return false;
 		}
 		return true;
+=======
+
+	@Override
+	public List getAll() {
+		return null;
+>>>>>>> branch 'master' of https://github.com/andreimozgo/lowcost.git
 	}
 }

@@ -11,10 +11,11 @@
 	${user}, hello!
 	<hr />
 	
-<h3>Расписание рейсов</h3>
+<h3>Лента новостей</h3>
 </head>
 
 
+<<<<<<< HEAD
  <table border="1">
  <thead align = "center">
    <tr>
@@ -26,17 +27,23 @@
   </thead>
   <tbody align = "center">
    <c:forEach items="${flights}" var="flight">
+=======
+ <table>
+   <c:forEach items="${news}" var="onenews">
+>>>>>>> branch 'master' of https://github.com/andreimozgo/lowcost.git
     <tr>
-     <td><c:out value="${flight.id}" /></td>
-     <td><c:out value="${flight.date}" /></td>
-     <td><c:out value="${flight.seats}" /></td>
+      <thead>
+     <td><b><c:out value="${onenews.title}" /></b></td>
+       </thead>
+     <br>  
+     <tbody>
      <td>
-     <a
-      href="Controller?action=edit&id=<c:out value="${flight.id }"/>">Update</a></td>
-     <td><a
-      href="Controller?action=delete&id=<c:out value="${flight.id }"/>">Delete</a></td>
-    </tr>
+     <c:out value="${onenews.annotation}" />
+     <br><br>
+     <td>Автор:<c:out value="${onenews.author}" /></td>
+     <td> </table>
    </c:forEach>
+<<<<<<< HEAD
    <td><body>
 Role: ${role}</td>
   </tbody>
@@ -70,6 +77,9 @@ Role: ${role}</td>
  </form>
   
  </table>
+=======
+
+>>>>>>> branch 'master' of https://github.com/andreimozgo/lowcost.git
     <br>
 	<a href="controller?command=logout">Logout</a>
 

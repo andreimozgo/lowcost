@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import dao.DataSource;
-import dao.FlightDAO;
-import dto.Flight;
+import dao.NewsDAO;
+import dto.News;
 
 public class LoginCommand implements ActionCommand {
 	private static final String PARAM_NAME_LOGIN = "login";
@@ -28,13 +28,18 @@ public class LoginCommand implements ActionCommand {
 			String pass = request.getParameter(PARAM_NAME_PASSWORD);
 			// проверка логина и пароля
 			if (LoginLogic.checkLogin(login, pass, connectionDb)) {
+<<<<<<< HEAD
 				HttpSession session = request.getSession(true);
 				session.setAttribute("user", login);
 				// получение роли пользователя
 				String userRole = LoginLogic.getUserRole(login, connectionDb);
 				// помещение роли в сессию
 				session.setAttribute("role", userRole);
+=======
+				request.setAttribute("user", login);
+>>>>>>> branch 'master' of https://github.com/andreimozgo/lowcost.git
 				// определение пути к main.jsp
+<<<<<<< HEAD
 				if (userRole.equals("admin")) {
 					page = ConfigurationManager.getProperty("path.page.main");
 				} else {
@@ -44,6 +49,12 @@ public class LoginCommand implements ActionCommand {
 				FlightDAO fd = new FlightDAO(connectionDb);
 				List<Flight> flights = fd.getAll();
 				request.setAttribute("flights", flights);
+=======
+				page = ConfigurationManager.getProperty("path.page.main");
+				NewsDAO newsDao = new NewsDAO(connectionDb);
+				List<News> news = newsDao.getAll();
+				request.setAttribute("news", news);
+>>>>>>> branch 'master' of https://github.com/andreimozgo/lowcost.git
 				try {
 					connectionDb.close();
 				} catch (SQLException e) {
