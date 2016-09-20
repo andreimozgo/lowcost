@@ -19,23 +19,27 @@ public class LoginCommand implements ActionCommand {
 
 	@Override
 	public String execute(HttpServletRequest request) {
-		Connection connectionDb = null;
+
 		String page = null;
 		try {
-			connectionDb = DataSource.getInstance().getConnection();
+			Connection connectionDb = DataSource.getInstance().getConnection();
 			// извлечение из запроса логина и пароля
 			String login = request.getParameter(PARAM_NAME_LOGIN);
 			String pass = request.getParameter(PARAM_NAME_PASSWORD);
 			// проверка логина и пароля
 			if (LoginLogic.checkLogin(login, pass, connectionDb)) {
-				request.setAttribute("user", login);
+				HttpSession session = request.getSession(true);
+				session.setAttribute("user", login);
 				// получение роли пользователя
 				String userRole = LoginLogic.getUserRole(login, connectionDb);
-				HttpSession session = request.getSession(true);
 				// помещение роли в сессию
 				session.setAttribute("role", userRole);
 				// определение пути к main.jsp
-				page = ConfigurationManager.getProperty("path.page.main");
+				if (userRole.equals("admin")) {
+					page = ConfigurationManager.getProperty("path.page.main");
+				} else {
+					page = ConfigurationManager.getProperty("path.page.user");
+				}
 
 				FlightDAO fd = new FlightDAO(connectionDb);
 				List<Flight> flights = fd.getAll();

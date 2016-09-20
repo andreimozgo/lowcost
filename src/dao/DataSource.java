@@ -27,6 +27,7 @@ public class DataSource {
 		cpds.setUser(resource.getString("db.user"));
 
 		cpds.setPassword(resource.getString("db.password"));
+		
 
 		// the settings below are optional -- c3p0 can work with defaults
 
