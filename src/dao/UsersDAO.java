@@ -12,35 +12,17 @@ import java.util.List;
 
 import org.w3c.dom.Entity;
 
+import dto.Flight;
 import dto.User;
 
-public class UsersDAO extends AbstractDAO<User> {
+public class UsersDAO extends AbstractDAO<Integer, User> {
 
 	public UsersDAO(Connection connection) {
 		super(connection);
 	}
 
-
-<<<<<<< HEAD
-		Statement statement;
-		try {
-			statement = connection.createStatement();
-			String query = "SELECT user_id,login FROM users";
-			ResultSet result = statement.executeQuery(query);
-			while (result.next()) {
-				System.out.println(result.getString(1) + " " + result.getString(2));
-			}
-			result.close();
-			statement.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-
-	public String getPassword(String login) {
-=======
 	public String getPassword (String login){
->>>>>>> branch 'master' of https://github.com/andreimozgo/lowcost.git
+
 		Statement statement;
 		String pass = null;
 		try {
@@ -57,29 +39,30 @@ public class UsersDAO extends AbstractDAO<User> {
 		return pass;
 	}
 
-	public String getUserRoleByLogin(String login) {
+	public User getUserByLogin(String login) {
 		Statement statement;
-		String role = "user";
+		User user = new User();
 		try {
 			statement = connection.createStatement();
-			String query = "SELECT role FROM users WHERE login=\"" + login + "\"";
+			String query = "SELECT * FROM users WHERE login=\"" + login + "\"";
 			ResultSet result = statement.executeQuery(query);
 			result.next();
-			role = result.getString(1);
+			int id = result.getInt(1);
+			String role = result.getString(4);
 			result.close();
+			user.setUserId(id);
+			user.setUserRole(role);
 			statement.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return role;
+		return user;
 	}
 
-<<<<<<< HEAD
-	public boolean create(User entity) {
+	public boolean create (User entity) {
 
 		String query = "INSERT INTO users (user_id, login, pass, role) " + "VALUES (?, ?, ?, ?)";
 		try {
-			System.out.println(entity.getLogin());
 			PreparedStatement ps = (PreparedStatement) connection.prepareStatement(query);
 			ps.setInt(1, 0);
 			ps.setString(2, entity.getLogin());
@@ -92,11 +75,33 @@ public class UsersDAO extends AbstractDAO<User> {
 			return false;
 		}
 		return true;
-=======
+}
 
-	@Override
 	public List getAll() {
 		return null;
->>>>>>> branch 'master' of https://github.com/andreimozgo/lowcost.git
+	}
+
+	@Override
+	public User findEntityById(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean delete(Integer id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean delete(User entity) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public User update(User entity) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

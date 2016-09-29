@@ -11,31 +11,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dto.Flight;
+import dto.User;
 
-public class FlightDAO extends AbstractDAO<Flight> {
+public class FlightDAO extends AbstractDAO<Integer, Flight> {
 	public static final String SELECT_ALL_FLIGHT = "SELECT * FROM flight";
 
 	public FlightDAO(Connection connection) {
 		super(connection);
-	}
-
-	@Override
-	public void findAll() {
-		Statement statement;
-		try {
-			statement = connection.createStatement();
-			String query = "SELECT flight_id,date,seats,cost,up_cost FROM flight";
-			ResultSet result = statement.executeQuery(query);
-			while (result.next()) {
-				System.out.println(result.getString(1) + " " + result.getString(2) + " " + result.getString(3) + " "
-						+ result.getString(4) + " " + result.getString(5));
-			}
-			result.close();
-			statement.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
 	public List<Flight> getAll() {
@@ -65,23 +47,71 @@ public class FlightDAO extends AbstractDAO<Flight> {
 
 	}
 	
-	public void addFlight(LocalDate date, int seats, int cost, int upCost ) {
-		  Date sqlDate = Date.valueOf(date);
-		 	  try {
-		   String query = "INSERT INTO flight (flight_id, date, seats, cost, up_cost) "
-		     + "VALUES (?, ?, ?, ?, ?)";
-		   PreparedStatement ps = (PreparedStatement) connection.prepareStatement(query);
-		   ps.setInt(1, 0);
-		   ps.setDate(2, sqlDate);
-		   ps.setInt(3, seats);
-		   ps.setInt(4, cost);
-		   ps.setInt(5, upCost);
+	@Override
+	public boolean create(Flight entity) {
+		
+		Date sqlDate = Date.valueOf(entity.getDate());
+		try {
+			String query = "INSERT INTO flight (flight_id, date, seats, cost, up_cost) " + "VALUES (?, ?, ?, ?, ?)";
+			PreparedStatement ps = (PreparedStatement) connection.prepareStatement(query);
+			ps.setInt(1, 0);
+			ps.setDate(2, sqlDate);
+			ps.setInt(3, entity.getSeats());
+			ps.setInt(4, entity.getCost());
+			ps.setInt(5, entity.getUpCost());
 
-		   ps.executeUpdate();
-		   ps.close();
+			ps.executeUpdate();
+			ps.close();
 
-		  } catch (SQLException e) {
-		   e.printStackTrace();
-		  }
-		 }
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public Flight findEntityById(Integer id) {
+		Statement statement;
+		Flight flight = null;
+		try {
+			statement = connection.createStatement();
+			String query = "SELECT * FROM flight WHERE flight_id=\"" + id + "\"";
+			ResultSet result = statement.executeQuery(query);
+			result.next();
+			flight = new Flight((int)id,result.getString(2),result.getInt(3),result.getInt(4),result.getByte(5));
+			result.close();
+			statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return flight;
+	}
+
+	@Override
+	public boolean delete(Integer id) {
+		String query = "DELETE FROM flight WHERE flight_id ="+id;
+		try {
+			PreparedStatement ps = (PreparedStatement) connection.prepareStatement(query);
+			ps.executeUpdate();
+			ps.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+
+		return true;
+	}
+
+	@Override
+	public boolean delete(Flight entity) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Flight update(Flight entity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

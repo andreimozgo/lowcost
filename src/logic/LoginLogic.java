@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import dao.DataSource;
 import dao.UsersDAO;
+import dto.User;
 
 public class LoginLogic {
 
@@ -28,7 +29,8 @@ public class LoginLogic {
 		String userRole = "user";
 
 		UsersDAO userDao = new UsersDAO(connectionDb);
-		userRole = userDao.getUserRoleByLogin(enterLogin);
+		User user = userDao.getUserByLogin(enterLogin);
+		userRole = user.getUserRole();
 		return userRole;
 	}
 }

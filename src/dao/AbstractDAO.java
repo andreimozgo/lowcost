@@ -7,7 +7,7 @@ import java.util.List;
 
 import dto.Entity;
 
-public abstract class AbstractDAO<T extends Entity> {
+public abstract class AbstractDAO <K, T extends Entity> {
 
 	protected Connection connection;
 
@@ -15,6 +15,16 @@ public abstract class AbstractDAO<T extends Entity> {
 		this.connection = connection;
 	}
 
+    public abstract T findEntityById(K id); 
+    
+    public abstract boolean delete(K id); 
+    
+    public abstract boolean delete(T entity); 
+    
+    public abstract boolean create(T entity); 
+    
+    public abstract T update(T entity);
+	
 	public abstract List<T> getAll();
 
 	public void close(Statement st) {

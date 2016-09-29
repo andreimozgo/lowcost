@@ -10,12 +10,10 @@
 	<hr />
 	${user}, hello!
 	<hr />
-	
-<h3>Лента новостей</h3>
+<h3>Расписание рейсов</h3>
 </head>
 
 
-<<<<<<< HEAD
  <table border="1">
  <thead align = "center">
    <tr>
@@ -27,46 +25,39 @@
   </thead>
   <tbody align = "center">
    <c:forEach items="${flights}" var="flight">
-=======
- <table>
-   <c:forEach items="${news}" var="onenews">
->>>>>>> branch 'master' of https://github.com/andreimozgo/lowcost.git
     <tr>
-      <thead>
-     <td><b><c:out value="${onenews.title}" /></b></td>
-       </thead>
-     <br>  
-     <tbody>
-     <td>
-     <c:out value="${onenews.annotation}" />
-     <br><br>
-     <td>Автор:<c:out value="${onenews.author}" /></td>
-     <td> </table>
+     <td><c:out value="${flight.id}" /></td>
+     <td><c:out value="${flight.date}" /></td>
+     <td><c:out value="${flight.seats}" /></td>
+     <td><form method="post" action="controller">
+       <input type="hidden" name="command" value="deleteflight" /> <input
+        type="hidden" name="flight_id" value="${flight.id}">
+       <input type="submit" value="Удалить" />
+      </form></td>
+    </tr>
    </c:forEach>
-<<<<<<< HEAD
    <td><body>
 Role: ${role}</td>
   </tbody>
   <form action="controller" method="post">
 
    <div>
-    <label for="flightDate">Date:</label><br> <input
+    <label for="flightDate">Дата:</label><br> <input
      type="date" name="flightDate" value="" required />
    </div>
 
    <div>
-    <label for="seats">Seats:</label><br> <input
+    <label for="seats">Число мест:</label><br> <input
      type="text" name="seats" value="" required />
    </div>
-   <br>
-      <div>
-    <label for="cost">Cost:</label><br> <input
+   <div>
+    <label for="cost">Цена:</label><br> <input
      type="text" name="cost" value="" required />
    </div>
     <div>
-    <label for="upCost">Up cost</label> <select name="upCost">
-     <option value="0">0</option>
-     <option value="1">1</option>
+    <label for="upCost">Признак повышения цены</label> </br><select name="upCost">
+     <option value="0">0 - не повышается</option>
+     <option value="1">1 - повышается</option>
     </select>
    </div>
    <div>
@@ -77,9 +68,6 @@ Role: ${role}</td>
  </form>
   
  </table>
-=======
-
->>>>>>> branch 'master' of https://github.com/andreimozgo/lowcost.git
     <br>
 	<a href="controller?command=logout">Logout</a>
 

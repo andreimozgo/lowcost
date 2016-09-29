@@ -29,6 +29,14 @@ public class Flight extends Entity {
 		return seats;
 	}
 
+	public int getCost(){
+		return cost;
+	}
+	
+	public void setCost(int cost){
+		this.cost = cost;
+	}
+	
 	public byte getUpCost(){
 		return upCost;
 	}

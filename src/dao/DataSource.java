@@ -20,7 +20,8 @@ public class DataSource {
 
 		cpds = new ComboPooledDataSource();
 
-		cpds.setDriverClass(resource.getString("db.driver")); // loads the jdbc driver
+		cpds.setDriverClass(resource.getString("db.driver")); 
+		// loads the jdbc driver
 
 		cpds.setJdbcUrl(resource.getString("db.url"));
 

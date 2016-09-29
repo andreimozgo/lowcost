@@ -25,6 +25,26 @@ public enum CommandEnum {
 		{
 			this.command = new AddRegistrationCommand();
 		}
+	},
+	DELETEFLIGHT {
+		{
+			this.command = new DeleteFlightCommand();
+		}
+	},
+	RECALCULATE {
+		{
+			this.command = new RecalculateCommand();
+		}
+	},
+	BUYTICKET {
+		{
+			this.command = new BuyTicketCommand();
+		}
+	},
+	PAYTICKET {
+		{
+			this.command = new PayTicketCommand();
+		}
 	};
 	
 	ActionCommand command;

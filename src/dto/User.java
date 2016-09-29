@@ -16,6 +16,10 @@ public class User extends Entity {
 		this.password = password;
 
 	}
+	
+	public void setUserId(int id){
+		super.setId(id);
+	}
 
 	public String getLogin(){
 		return login;
@@ -27,5 +31,9 @@ public class User extends Entity {
 	
 	public String getUserRole(){
 		return userRole;
+	}
+	
+	public void setUserRole(String userRole){
+		this.userRole = userRole;
 	}
 }
