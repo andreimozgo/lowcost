@@ -12,9 +12,6 @@ import java.util.List;
 
 import org.w3c.dom.Entity;
 
-import dto.Flight;
-import dto.User;
-
 public class UsersDAO extends AbstractDAO<Integer, User> {
 
 	public UsersDAO(Connection connection) {

@@ -11,8 +11,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import dao.DataSource;
+import dao.Flight;
 import dao.FlightDAO;
-import dto.Flight;
 
 public class AddFlightCommand implements ActionCommand {
 

@@ -10,9 +10,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import dto.Flight;
-import dto.User;
-
 public class FlightDAO extends AbstractDAO<Integer, Flight> {
 	public static final String SELECT_ALL_FLIGHT = "SELECT * FROM flight";
 

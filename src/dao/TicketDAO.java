@@ -8,9 +8,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import dto.Flight;
-import dto.Ticket;
-
 public class TicketDAO extends AbstractDAO<Integer, Ticket> {
 
 	public TicketDAO(Connection connection) {

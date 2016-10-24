@@ -6,8 +6,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
-import dto.Services;
-
 public class ServicesDAO extends AbstractDAO<Integer, Services> {
 
 	public ServicesDAO(Connection connection) {

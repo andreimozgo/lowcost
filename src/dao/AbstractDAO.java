@@ -5,8 +5,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
-import dto.Entity;
-
 public abstract class AbstractDAO <K, T extends Entity> {
 
 	protected Connection connection;

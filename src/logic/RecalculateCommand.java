@@ -10,12 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import dao.DataSource;
+import dao.Flight;
 import dao.FlightDAO;
+import dao.Services;
 import dao.ServicesDAO;
+import dao.Ticket;
 import dao.TicketDAO;
-import dto.Flight;
-import dto.Services;
-import dto.Ticket;
 
 public class RecalculateCommand implements ActionCommand {
 

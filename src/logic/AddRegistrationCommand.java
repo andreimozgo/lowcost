@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import dao.DataSource;
 import dao.FlightDAO;
+import dao.User;
 import dao.UsersDAO;
-import dto.User;
 
 public class AddRegistrationCommand implements ActionCommand {
 

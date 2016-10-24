@@ -1,4 +1,4 @@
-package dto;
+package dao;
 
 public class Services extends Entity {
 	private String name;

@@ -10,12 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import dao.DataSource;
+import dao.Flight;
 import dao.FlightDAO;
+import dao.Ticket;
 import dao.TicketDAO;
+import dao.User;
 import dao.UsersDAO;
-import dto.Flight;
-import dto.Ticket;
-import dto.User;
 
 public class LoginCommand implements ActionCommand {
 	private static final String PARAM_NAME_LOGIN = "login";
